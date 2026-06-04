@@ -23,12 +23,36 @@ Windows Event Logs
 Threat Hunting & Log Analysis
 MITRE ATT&CK Framework
 
+Project Structure
+-----------
+```
+SOC-Alert-Monitoring-Log-Correlation/
+│
+├── README.md
+├── screenshots/
+│   ├── wazuh-dashboard.png
+│   ├── alerts.png
+│   └── [other investigation screenshots]
+│
+├── reports/
+│   ├── SOC_Alert_Monitoring_Presentation.pptx
+│   └── incident-report.pdf
+│
+├── logs/
+│   └── sample-logs.csv
+│
+└── findings/
+    └── attack-analysis.md
+```
+
 Project Files
 -----------
-📊 **SOC_Alert_Monitoring_Presentation.pptx** - Comprehensive presentation slides covering the SOC investigation workflow, findings, and threat analysis
+📊 **reports/SOC_Alert_Monitoring_Presentation.pptx** - Comprehensive presentation slides covering the SOC investigation workflow, findings, and threat analysis
 
-📄 **SOC_Project_Report.pdf** - Detailed project report with methodology, investigation steps, and recommendations
+📄 **reports/incident-report.pdf** - Detailed project report with methodology, investigation steps, and recommendations
 
-📋 **events-2026-04-08T18_27_59.401Z (1).csv** - Raw log data and security events collected during the investigation
+📋 **logs/sample-logs.csv** - Raw log data and security events collected during the investigation
 
-📸 **Screenshots-Capstone_Project/** - Directory containing screenshots of Wazuh dashboard, alerts, and investigation findings
+📸 **screenshots/** - Directory containing screenshots of Wazuh dashboard, alerts, and investigation findings
+
+📝 **findings/attack-analysis.md** - In-depth attack analysis, MITRE ATT&CK mapping, compliance impact assessment, and recommendations
