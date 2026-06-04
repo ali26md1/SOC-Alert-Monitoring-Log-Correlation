@@ -23,6 +23,49 @@ Windows Event Logs
 Threat Hunting & Log Analysis
 MITRE ATT&CK Framework
 
+Architecture Diagram
+-----------
+```
+Attacker (Brute Force Attempt)
+   ↓
+Linux Target Host
+   ↓
+Wazuh Agent (Event Collection)
+   ├─ PAM Logs
+   ├─ Syslog
+   ├─ Auditd
+   └─ SELinux Logs
+   ↓
+Wazuh Manager (Log Aggregation & Correlation)
+   ↓
+Alert Generation & Threshold Detection
+   ↓
+SOC Analyst Investigation & Threat Hunting
+   ↓
+MITRE ATT&CK Mapping & Incident Response
+```
+
+MITRE ATT&CK Techniques
+-----------
+| Technique | Technique ID | Tactic | Evidence |
+|-----------|-----------|--------|----------|
+| Valid Accounts | T1078 | Initial Access, Persistence | Successful login after failed attempts |
+| Brute Force | T1110 | Credential Access | Multiple PAM authentication failures |
+| Account Discovery | T1087 | Discovery | System reconnaissance via login attempts |
+| System Information Discovery | T1082 | Discovery | Potential privilege escalation attempts |
+
+Investigation Timeline
+-----------
+| Time | Event | Details |
+|------|-------|---------|
+| 10:00 AM | Initial Alert | Multiple PAM authentication failures detected on Linux host |
+| 10:02 AM | Pattern Recognition | Wazuh correlated failed attempts with SELinux violations |
+| 10:05 AM | Escalation | SELinux access denial logged during attack phase |
+| 10:08 AM | Breach Confirmed | Successful login observed in authentication logs |
+| 10:10 AM | Response Initiated | Incident escalated to SOC team for analysis |
+| 10:15 AM | Threat Assessment | Cross-referenced with Windows Event Logs for broader context |
+| 10:20 AM | Analysis Complete | Attack mapped to MITRE ATT&CK T1078 & T1110 |
+
 Project Structure
 -----------
 ```

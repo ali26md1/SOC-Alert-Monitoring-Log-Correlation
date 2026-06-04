@@ -4,6 +4,38 @@
 
 This document provides a comprehensive analysis of the brute-force login attack detected and investigated using the Wazuh SIEM/XDR platform.
 
+## Attack Detection Architecture
+
+```
+Attacker (Remote Brute Force)
+   ↓
+Linux Target Host (Vulnerable System)
+   ├─ PAM Authentication Module
+   ├─ Syslog Facility
+   ├─ Auditd Daemon
+   └─ SELinux Module
+   ↓
+Wazuh Agent (Real-time Log Collection)
+   ├─ Captures failed login attempts
+   ├─ Detects SELinux denials
+   └─ Tracks successful authentications
+   ↓
+Wazuh Manager (Centralized Analysis)
+   ├─ Log Aggregation
+   ├─ Pattern Matching
+   ├─ Correlation Engine
+   └─ Alert Generation
+   ↓
+Alert Threshold Triggered → HIGH SEVERITY
+   ↓
+SOC Analyst Dashboard & Investigation
+   ├─ Threat Hunting
+   ├─ Context Analysis
+   └─ MITRE ATT&CK Mapping
+   ↓
+Incident Response & Containment
+```
+
 ## Attack Timeline
 
 ### Detected Indicators
@@ -19,7 +51,30 @@ This document provides a comprehensive analysis of the brute-force login attack 
 - **Technique:** Valid Accounts
 - **Attack Pattern:** Brute-force credentials
 
+### Related Techniques
+
+| Technique | Technique ID | Tactic | Description |
+|-----------|-----------|--------|-------------|
+| Valid Accounts | T1078 | Initial Access, Persistence | Attacker used legitimate account credentials |
+| Brute Force | T1110 | Credential Access | Attempted password guessing against multiple accounts |
+| Account Discovery | T1087 | Discovery | Reconnaissance to identify valid accounts |
+| System Information Discovery | T1082 | Discovery | Gathering system information for privilege escalation |
+| Privilege Escalation | T1548 | Privilege Escalation | Attempt to escalate privileges post-compromise |
+
 ## Investigation Findings
+
+### Attack Timeline
+
+| Time | Event | Component | Details |
+|------|-------|-----------|---------|
+| 10:00 AM | Initial Alert Triggered | Wazuh Manager | Multiple PAM authentication failures detected on target Linux host |
+| 10:02 AM | Pattern Recognition | Log Correlation Engine | Failed attempts correlated with SELinux access violations |
+| 10:05 AM | Escalation Alert | Security Rules | SELinux denial audit log generated during attack phase |
+| 10:08 AM | Breach Confirmation | Authentication Logs | Successful login session established post-attack attempts |
+| 10:10 AM | Incident Response | SOC Team | Attack escalated for immediate investigation and response |
+| 10:15 AM | Context Analysis | Windows Integration | Cross-referenced with Windows Event Logs for lateral movement indicators |
+| 10:20 AM | Threat Mapping | MITRE ATT&CK | Attack mapped to T1078 (Valid Accounts) and T1110 (Brute Force) |
+| 10:30 AM | Containment | Incident Response | Access review initiated, suspicious session isolated |
 
 ### Stage 1: Initial Detection
 - Alert triggered by multiple authentication failures
