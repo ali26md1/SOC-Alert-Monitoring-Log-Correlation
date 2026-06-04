@@ -22,3 +22,13 @@ Linux (Syslog, PAM, Auditd, SELinux)
 Windows Event Logs
 Threat Hunting & Log Analysis
 MITRE ATT&CK Framework
+
+Project Files
+-----------
+📊 **SOC_Alert_Monitoring_Presentation.pptx** - Comprehensive presentation slides covering the SOC investigation workflow, findings, and threat analysis
+
+📄 **SOC_Project_Report.pdf** - Detailed project report with methodology, investigation steps, and recommendations
+
+📋 **events-2026-04-08T18_27_59.401Z (1).csv** - Raw log data and security events collected during the investigation
+
+📸 **Screenshots-Capstone_Project/** - Directory containing screenshots of Wazuh dashboard, alerts, and investigation findings
